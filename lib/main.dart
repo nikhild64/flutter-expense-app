@@ -18,7 +18,8 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter App'),
+        backgroundColor: Colors.purple[900],
+        title: Text('Expense Tracker'),
       ),
       body: SingleChildScrollView(
         child: Column(

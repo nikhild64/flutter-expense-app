@@ -21,56 +21,6 @@ class _TransactionState extends State<Transaction> {
         id: 'id',
         title: 'Shoes',
         transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: 'id',
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
   ];
   void _addTransaction(String txTitle, double txAmount) {
     final newTx = TransactionData(
