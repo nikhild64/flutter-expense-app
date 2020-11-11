@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'widgets/transaction_list.dart';
+import 'models/transaction.dart';
+import 'widgets/new_transaction.dart';
+import 'widgets/user_transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,12 +15,63 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  void _starttNexTx(BuildContext ctx) {
+    showModalBottomSheet(
+        context: ctx,
+        builder: (blctx) {
+          return NewTransaction(_addTransaction);
+        });
+  }
+
+  final List<TransactionData> _transactions = [
+    TransactionData(
+        amount: 10.99,
+        id: 'id',
+        title: 'Shoes',
+        transactionDate: DateTime.now()),
+    TransactionData(
+        amount: 10.99,
+        id: 'id',
+        title: 'Shoes',
+        transactionDate: DateTime.now()),
+  ];
+  void _addTransaction(String txTitle, double txAmount) {
+    final newTx = TransactionData(
+      title: txTitle,
+      amount: txAmount,
+      transactionDate: DateTime.now(),
+      id: DateTime.now().toString(),
+    );
+
+    setState(() {
+      _transactions.add(newTx);
+    });
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            _starttNexTx(context);
+          }),
       appBar: AppBar(
-        backgroundColor: Colors.purple[900],
+        actions: [
+          IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {
+                _starttNexTx(context);
+              })
+        ],
         title: Text('Expense Tracker'),
       ),
       body: SingleChildScrollView(
@@ -35,7 +88,7 @@ class MyHomePage extends StatelessWidget {
                 ),
               ),
             ),
-            Transaction(),
+            TransactionList(_transactions),
           ],
         ),
       ),
