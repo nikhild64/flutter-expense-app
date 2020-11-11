@@ -9,6 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: ThemeData(
+        primarySwatch: Colors.blueGrey,
+        accentColor: Colors.blueGrey,
+      ),
       theme: ThemeData(
         primarySwatch: Colors.purple,
         accentColor: Colors.amber,
@@ -34,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<TransactionData> _transactions = [
-    TransactionData(
+    /* TransactionData(
         amount: 10.99,
         id: 'id',
         title: 'Shoes',
@@ -43,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         amount: 10.99,
         id: 'id',
         title: 'Shoes',
-        transactionDate: DateTime.now()),
+        transactionDate: DateTime.now()), */
   ];
   void _addTransaction(String txTitle, double txAmount) {
     final newTx = TransactionData(
