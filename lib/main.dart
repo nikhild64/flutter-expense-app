@@ -98,6 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SingleChildScrollView(
+                scrollDirection: Axis.vertical,
                 child: Container(
                   width: double.infinity,
                   child: Card(

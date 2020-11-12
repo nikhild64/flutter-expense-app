@@ -8,7 +8,7 @@ class Chart extends StatefulWidget {
   final List<TransactionData> _transactinData;
   Chart(this._transactinData);
   List<Map<String, Object>> get _recentData {
-    return List.generate(10, (index) {
+    return List.generate(7, (index) {
       var weekDay = DateTime.now().subtract(Duration(days: index));
       double _amountTotal = 0;
       for (var i = 0; i < _transactinData.length; i++) {
@@ -19,10 +19,7 @@ class Chart extends StatefulWidget {
         }
       }
       print({'day': DateFormat.E().format(weekDay), 'amount': _amountTotal});
-      return {
-        'day': DateFormat.E().format(weekDay).substring(0, 1),
-        'amount': _amountTotal
-      };
+      return {'day': DateFormat.E().format(weekDay), 'amount': _amountTotal};
     }).reversed.toList();
   }
 
@@ -40,14 +37,20 @@ class Chart extends StatefulWidget {
 class _ChartState extends State<Chart> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: widget._recentData.map((rd) {
-          return ChartData(
-              rd,
-              widget._totalWeekly == 0
-                  ? 0.0
-                  : ((rd['amount'] as double) / widget._totalWeekly));
-        }).toList());
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: widget._recentData.map((rd) {
+            return Container(
+              width: 50,
+              child: ChartData(
+                  rd,
+                  widget._totalWeekly == 0
+                      ? 0.0
+                      : ((rd['amount'] as double) / widget._totalWeekly)),
+            );
+          }).toList()),
+    );
   }
 }
