@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'models/transaction.dart';
 import 'widgets/chart.dart';
 import 'widgets/new_transaction.dart';
 import 'widgets/user_transaction.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -32,9 +38,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   void _starttNexTx(BuildContext ctx) {
     showModalBottomSheet(
+        isScrollControlled: true,
         context: ctx,
         builder: (blctx) {
-          return NewTransaction(_addTransaction);
+          return SingleChildScrollView(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: NewTransaction(_addTransaction),
+          );
         });
   }
 
