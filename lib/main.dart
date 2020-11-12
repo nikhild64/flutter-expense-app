@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'models/transaction.dart';
+import 'widgets/chart.dart';
 import 'widgets/new_transaction.dart';
 import 'widgets/user_transaction.dart';
 
@@ -38,22 +39,22 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<TransactionData> _transactions = [
-    /* TransactionData(
+    /*  TransactionData(
         amount: 10.99,
-        id: 'id',
+        id: DateTime.now().toString(),
         title: 'Shoes',
         transactionDate: DateTime.now()),
     TransactionData(
         amount: 10.99,
-        id: 'id',
+        id: DateTime.now().toString(),
         title: 'Shoes',
         transactionDate: DateTime.now()), */
   ];
-  void _addTransaction(String txTitle, double txAmount) {
+  void _addTransaction(String txTitle, double txAmount, DateTime userDate) {
     final newTx = TransactionData(
       title: txTitle,
       amount: txAmount,
-      transactionDate: DateTime.now(),
+      transactionDate: userDate,
       id: DateTime.now().toString(),
     );
 
@@ -61,6 +62,12 @@ class _MyHomePageState extends State<MyHomePage> {
       _transactions.add(newTx);
     });
     Navigator.of(context).pop();
+  }
+
+  void _deleteTransaction(id) {
+    setState(() {
+      _transactions.removeWhere((tx) => tx.id == id);
+    });
   }
 
   @override
@@ -83,21 +90,24 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text('Expense Tracker'),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.amberAccent,
-                child: Text(
-                  'Chart!',
-                  textAlign: TextAlign.center,
+        child: GestureDetector(
+          onVerticalDragDown: (_) {
+            //Add gestures
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SingleChildScrollView(
+                child: Container(
+                  width: double.infinity,
+                  child: Card(
+                    child: Chart(_transactions),
+                  ),
                 ),
               ),
-            ),
-            TransactionList(_transactions),
-          ],
+              TransactionList(_transactions, _deleteTransaction),
+            ],
+          ),
         ),
       ),
     );

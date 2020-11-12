@@ -4,7 +4,8 @@ import 'package:intl/intl.dart';
 
 class TransactionList extends StatelessWidget {
   final List<TransactionData> _transactions;
-  TransactionList(this._transactions);
+  final Function deleteTx;
+  TransactionList(this._transactions, this.deleteTx);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -29,50 +30,39 @@ class TransactionList extends StatelessWidget {
               )
             : ListView.builder(
                 itemBuilder: (context, index) {
-                  return (Container(
-                    width: double.infinity,
+                  return Padding(
+                    padding: EdgeInsets.all(10),
                     child: Card(
                       elevation: 5,
-                      child: Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.all(15),
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Theme.of(context).primaryColor,
-                                  width: 2),
-                            ),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                            radius: 30,
                             child: Text(
-                              '\$${_transactions[index].amount.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                  color: Theme.of(context).primaryColor,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            padding: EdgeInsets.all(5),
+                                '\$${_transactions[index].amount.toStringAsFixed(2)}')),
+                        title: Text(_transactions[index].title,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            )),
+                        subtitle: Text(
+                          DateFormat()
+                              .add_yMMMd()
+                              .format(_transactions[index].transactionDate),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(_transactions[index].title,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                              Text(
-                                DateFormat().add_yMMMd().format(
-                                    _transactions[index].transactionDate),
-                                style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 16,
-                                ),
-                              )
-                            ],
-                          )
-                        ],
+                        ),
+                        trailing: IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {
+                            deleteTx(_transactions[index].id);
+                          },
+                          color: Colors.red,
+                        ),
                       ),
                     ),
-                  ));
+                  );
                 },
                 itemCount: _transactions.length,
               ));
