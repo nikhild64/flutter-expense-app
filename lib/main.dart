@@ -139,19 +139,15 @@ class _MyHomePageState extends State<MyHomePage> {
             //Add gestures
           },
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Container(
-                  height: (mediaQuery.size.height -
-                          appBar.preferredSize.height -
-                          mediaQuery.padding.top) *
-                      .25,
-                  width: double.infinity,
-                  child: Card(
-                    child: Chart(_transactions),
-                  ),
+              Container(
+                height: (mediaQuery.size.height -
+                        appBar.preferredSize.height -
+                        mediaQuery.padding.top) *
+                    .25,
+                width: mediaQuery.size.width * 1,
+                child: Card(
+                  child: Chart(_transactions),
                 ),
               ),
               Container(

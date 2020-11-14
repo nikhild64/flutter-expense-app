@@ -37,20 +37,18 @@ class Chart extends StatefulWidget {
 class _ChartState extends State<Chart> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: widget._recentData.map((rd) {
-            return Container(
-              width: 50,
-              child: ChartData(
-                  rd,
-                  widget._totalWeekly == 0
-                      ? 0.0
-                      : ((rd['amount'] as double) / widget._totalWeekly)),
-            );
-          }).toList()),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: widget._recentData.map((rd) {
+        return Container(
+          padding: EdgeInsets.all(MediaQuery.of(context).size.width * .01),
+          child: ChartData(
+              rd,
+              widget._totalWeekly == 0
+                  ? 0.0
+                  : ((rd['amount'] as double) / widget._totalWeekly)),
+        );
+      }).toList(),
     );
   }
 }
