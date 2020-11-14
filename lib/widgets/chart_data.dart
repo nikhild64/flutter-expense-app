@@ -8,7 +8,7 @@ class ChartData extends StatelessWidget {
   Widget build(BuildContext context) {
     return (Column(
       children: [
-        Text('\$${_transactionData['amount'].toString()}'),
+        Text('\$${_transactionData['amount'].toStringAsFixed(2)}'),
         Container(
           height: 80,
           width: 10,

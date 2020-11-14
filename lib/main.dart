@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<TransactionData> _transactions = [
-    /*  TransactionData(
+    TransactionData(
         amount: 10.99,
         id: DateTime.now().toString(),
         title: 'Shoes',
@@ -59,8 +59,39 @@ class _MyHomePageState extends State<MyHomePage> {
         amount: 10.99,
         id: DateTime.now().toString(),
         title: 'Shoes',
-        transactionDate: DateTime.now()), */
+        transactionDate: DateTime.now()),
+    TransactionData(
+        amount: 10.99,
+        id: DateTime.now().toString(),
+        title: 'Shoes',
+        transactionDate: DateTime.now()),
+    TransactionData(
+        amount: 10.99,
+        id: DateTime.now().toString(),
+        title: 'Shoes',
+        transactionDate: DateTime.now()),
+    TransactionData(
+        amount: 10.99,
+        id: DateTime.now().toString(),
+        title: 'Shoes',
+        transactionDate: DateTime.now()),
+    TransactionData(
+        amount: 10.99,
+        id: DateTime.now().toString(),
+        title: 'Shoes',
+        transactionDate: DateTime.now()),
+    TransactionData(
+        amount: 10.99,
+        id: DateTime.now().toString(),
+        title: 'Shoes',
+        transactionDate: DateTime.now()),
+    TransactionData(
+        amount: 10.99,
+        id: DateTime.now().toString(),
+        title: 'Shoes',
+        transactionDate: DateTime.now()),
   ];
+
   void _addTransaction(String txTitle, double txAmount, DateTime userDate) {
     final newTx = TransactionData(
       title: txTitle,
@@ -83,6 +114,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
+    final appBar = AppBar(
+      actions: [
+        IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+              _starttNexTx(context);
+            })
+      ],
+      title: Text('Expense Tracker'),
+    );
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
@@ -90,16 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
           onPressed: () {
             _starttNexTx(context);
           }),
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              icon: Icon(Icons.add),
-              onPressed: () {
-                _starttNexTx(context);
-              })
-        ],
-        title: Text('Expense Tracker'),
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
         child: GestureDetector(
           onVerticalDragDown: (_) {
@@ -111,13 +144,22 @@ class _MyHomePageState extends State<MyHomePage> {
               SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: Container(
+                  height: (mediaQuery.size.height -
+                          appBar.preferredSize.height -
+                          mediaQuery.padding.top) *
+                      .25,
                   width: double.infinity,
                   child: Card(
                     child: Chart(_transactions),
                   ),
                 ),
               ),
-              TransactionList(_transactions, _deleteTransaction),
+              Container(
+                  height: (mediaQuery.size.height -
+                          appBar.preferredSize.height -
+                          mediaQuery.padding.top) *
+                      .75,
+                  child: TransactionList(_transactions, _deleteTransaction)),
             ],
           ),
         ),

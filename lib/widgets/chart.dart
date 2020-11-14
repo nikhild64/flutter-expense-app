@@ -18,7 +18,7 @@ class Chart extends StatefulWidget {
           _amountTotal = _amountTotal + _transactinData[i].amount;
         }
       }
-      print({'day': DateFormat.E().format(weekDay), 'amount': _amountTotal});
+
       return {'day': DateFormat.E().format(weekDay), 'amount': _amountTotal};
     }).reversed.toList();
   }
@@ -40,7 +40,7 @@ class _ChartState extends State<Chart> {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: widget._recentData.map((rd) {
             return Container(
               width: 50,
