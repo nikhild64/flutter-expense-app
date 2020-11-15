@@ -36,11 +36,17 @@ class TransactionList extends StatelessWidget {
                       elevation: 5,
                       child: ListTile(
                         leading: CircleAvatar(
+                            backgroundColor:
+                                Theme.of(context).primaryColorLight,
                             radius: 30,
                             child: Text(
-                                '\$${_transactions[index].amount.toStringAsFixed(2)}')),
+                              '\$${_transactions[index].amount.toStringAsFixed(2)}',
+                              style: TextStyle(
+                                  color: Theme.of(context).primaryColorDark),
+                            )),
                         title: Text(_transactions[index].title,
                             style: TextStyle(
+                              color: Theme.of(context).primaryColor,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             )),

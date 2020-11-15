@@ -50,46 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   final List<TransactionData> _transactions = [
-    TransactionData(
+    /*  TransactionData(
         amount: 10.99,
         id: DateTime.now().toString(),
         title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: DateTime.now().toString(),
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: DateTime.now().toString(),
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: DateTime.now().toString(),
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: DateTime.now().toString(),
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: DateTime.now().toString(),
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: DateTime.now().toString(),
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
-    TransactionData(
-        amount: 10.99,
-        id: DateTime.now().toString(),
-        title: 'Shoes',
-        transactionDate: DateTime.now()),
+        transactionDate: DateTime.now()), */
   ];
 
   void _addTransaction(String txTitle, double txAmount, DateTime userDate) {
